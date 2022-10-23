@@ -30,17 +30,17 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txt_bookId = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_quantity = new app.bolivia.swing.JCTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txt_bookName = new app.bolivia.swing.JCTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_authorName = new app.bolivia.swing.JCTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        txt_bookName = new app.bolivia.swing.JCTextField();
+        txt_authorName = new app.bolivia.swing.JCTextField();
+        txt_quantity = new app.bolivia.swing.JCTextField();
+        txt_bookId = new app.bolivia.swing.JCTextField();
         rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle3 = new rojerusan.RSMaterialButtonRectangle();
@@ -95,33 +95,11 @@ public class ManageBooks extends javax.swing.JFrame {
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 50, 50));
 
-        txt_bookId.setBackground(new java.awt.Color(102, 102, 255));
-        txt_bookId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_bookId.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_bookId.setPlaceholder("Enter Book ID");
-        txt_bookId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_bookIdActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 330, -1));
-
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Book ID");
         jLabel3.setToolTipText("");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
-
-        txt_quantity.setBackground(new java.awt.Color(102, 102, 255));
-        txt_quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_quantity.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_quantity.setPlaceholder("Enter Quantity\n");
-        txt_quantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_quantityActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, 330, -1));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,17 +113,6 @@ public class ManageBooks extends javax.swing.JFrame {
         jLabel5.setToolTipText("");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, -1, -1));
 
-        txt_bookName.setBackground(new java.awt.Color(102, 102, 255));
-        txt_bookName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_bookName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_bookName.setPlaceholder("Enter Book Name");
-        txt_bookName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_bookNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 330, -1));
-
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Moleskine_26px.png"))); // NOI18N
@@ -157,17 +124,6 @@ public class ManageBooks extends javax.swing.JFrame {
         jLabel7.setText("Book Name");
         jLabel7.setToolTipText("");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
-
-        txt_authorName.setBackground(new java.awt.Color(102, 102, 255));
-        txt_authorName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_authorName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_authorName.setPlaceholder("Enter Author Name");
-        txt_authorName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_authorNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_authorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 330, -1));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,32 +137,46 @@ public class ManageBooks extends javax.swing.JFrame {
         jLabel9.setToolTipText("");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, -1, -1));
 
-        rSMaterialButtonRectangle1.setBackground(new java.awt.Color(255, 51, 51));
-        rSMaterialButtonRectangle1.setText("Update");
-        rSMaterialButtonRectangle1.addActionListener(new java.awt.event.ActionListener() {
+        txt_bookName.setBackground(new java.awt.Color(102, 102, 255));
+        txt_bookName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_bookName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        txt_bookName.setPlaceholder("Enter Book Name");
+        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 330, -1));
+
+        txt_authorName.setBackground(new java.awt.Color(102, 102, 255));
+        txt_authorName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_authorName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        txt_authorName.setPlaceholder("Enter Author Name");
+        txt_authorName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonRectangle1ActionPerformed(evt);
+                txt_authorNameActionPerformed(evt);
             }
         });
-        jPanel1.add(rSMaterialButtonRectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 710, 120, -1));
+        jPanel1.add(txt_authorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 330, -1));
+
+        txt_quantity.setBackground(new java.awt.Color(102, 102, 255));
+        txt_quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_quantity.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        txt_quantity.setPlaceholder("Enter Quantity");
+        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, 330, -1));
+
+        txt_bookId.setBackground(new java.awt.Color(102, 102, 255));
+        txt_bookId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_bookId.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        txt_bookId.setPlaceholder("Enter Book ID\n");
+        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 330, -1));
+
+        rSMaterialButtonRectangle1.setBackground(new java.awt.Color(255, 51, 51));
+        rSMaterialButtonRectangle1.setText("UPDATE");
+        jPanel1.add(rSMaterialButtonRectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 710, 130, -1));
 
         rSMaterialButtonRectangle2.setBackground(new java.awt.Color(255, 51, 51));
-        rSMaterialButtonRectangle2.setText("Delete");
-        rSMaterialButtonRectangle2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonRectangle2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(rSMaterialButtonRectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 710, 120, -1));
+        rSMaterialButtonRectangle2.setText("DELETE");
+        jPanel1.add(rSMaterialButtonRectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 710, 130, -1));
 
         rSMaterialButtonRectangle3.setBackground(new java.awt.Color(255, 51, 51));
-        rSMaterialButtonRectangle3.setText("Add");
-        rSMaterialButtonRectangle3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonRectangle3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(rSMaterialButtonRectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 710, 120, -1));
+        rSMaterialButtonRectangle3.setText("add");
+        jPanel1.add(rSMaterialButtonRectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 710, 130, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -248,14 +218,14 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 1020, Short.MAX_VALUE)
+                .addGap(0, 1014, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,10 +241,11 @@ public class ManageBooks extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setSize(new java.awt.Dimension(1724, 852));
@@ -291,34 +262,6 @@ public class ManageBooks extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void txt_bookIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bookIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_bookIdActionPerformed
-
-    private void txt_quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_quantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_quantityActionPerformed
-
-    private void txt_bookNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bookNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_bookNameActionPerformed
-
-    private void txt_authorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_authorNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_authorNameActionPerformed
-
-    private void rSMaterialButtonRectangle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSMaterialButtonRectangle1ActionPerformed
-
-    private void rSMaterialButtonRectangle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSMaterialButtonRectangle2ActionPerformed
-
-    private void rSMaterialButtonRectangle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
-
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel10MouseClicked
@@ -326,6 +269,14 @@ public class ManageBooks extends javax.swing.JFrame {
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void txt_authorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_authorNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_authorNameActionPerformed
+
+    private void rSMaterialButtonRectangle5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSMaterialButtonRectangle5ActionPerformed
 
     /**
      * @param args the command line arguments
