@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Statement;
+//import java.sql.*;
 
 
 //import javax.swing.table.TableModel;
@@ -44,7 +45,7 @@ public class ManageBooks extends javax.swing.JFrame {
              Connection con = DriverManager.getConnection("jdbc:mysql://localhost:8111/library_ms","root","");
              
              
-             Statement st = con.createStatement();
+                Statement st = con.createStatement();
                 // 2:26 pe dekh!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 ResultSet rs = st.executeQuery("select * from book_details");
                 
