@@ -1,5 +1,8 @@
 package jframe;
 
+import javax.swing.JOptionPane;
+import java.sql.*;
+
 /**
  *
  * @author laksh doshi
@@ -11,6 +14,36 @@ public class signup_page extends javax.swing.JFrame {
      */
     public signup_page() {
         initComponents();
+    }
+    
+    //insert values in users table
+    public void insertSignupDetails(){
+        String name = txt_username.getText();
+        String pwd = txt_password.getText();
+        String email = txt_email.getText();
+        String contact = txt_contact.getText();
+        
+        try{
+            Connection con = DBConnection.getConnection();
+            String sql = "insert into users(name, password, email, contact) values(?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            
+            pst.setString(1, name);
+            pst.setString(2, pwd);
+            pst.setString(3, email);
+            pst.setString(4, contact);
+            
+            int updatedRowCount = pst.executeUpdate();
+            
+            if(updatedRowCount> 0){
+                JOptionPane.showMessageDialog(this,"Record Inserted Successfully");
+            }
+            else{ 
+                JOptionPane.showMessageDialog(this,"Record Insertion Failure");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -43,10 +76,6 @@ public class signup_page extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,7 +174,7 @@ public class signup_page extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 597, 126, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 126, -1));
 
         jLabel9.setText("EMAIL ID:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 273, -1, -1));
@@ -185,31 +214,7 @@ public class signup_page extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 632, 126, -1));
-
-        jLabel14.setText("BRANCH:");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 423, -1, -1));
-
-        jTextField5.setBackground(new java.awt.Color(102, 102, 255));
-        jTextField5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 445, 200, -1));
-
-        jLabel15.setText("YEAR:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, -1, -1));
-
-        jTextField6.setBackground(new java.awt.Color(102, 102, 255));
-        jTextField6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 512, 200, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 570, 126, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(251, 0, 51));
@@ -262,16 +267,8 @@ public class signup_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        insertSignupDetails();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
       System.exit(0);        // TODO add your handling code here:
@@ -320,8 +317,6 @@ public class signup_page extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -333,8 +328,6 @@ public class signup_page extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField txt_contact;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_password;
