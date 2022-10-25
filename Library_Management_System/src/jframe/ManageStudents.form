@@ -139,7 +139,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Book ID"/>
+            <Property name="text" type="java.lang.String" value="Student ID"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Constraints>
@@ -175,7 +175,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Quantity"/>
+            <Property name="text" type="java.lang.String" value="Branch"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Constraints>
@@ -211,7 +211,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Book Name"/>
+            <Property name="text" type="java.lang.String" value="Student Name"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Constraints>
@@ -247,7 +247,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Author Name"/>
+            <Property name="text" type="java.lang.String" value="Select Course"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Constraints>
@@ -256,7 +256,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="app.bolivia.swing.JCTextField" name="txt_bookName">
+        <Component class="app.bolivia.swing.JCTextField" name="txt_studentName">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="66" red="66" type="rgb"/>
@@ -271,10 +271,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="17" style="0"/>
             </Property>
-            <Property name="placeholder" type="java.lang.String" value="Enter Book Name"/>
+            <Property name="placeholder" type="java.lang.String" value="Enter Student Name"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_bookNameActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_studentNameActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -282,7 +282,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="app.bolivia.swing.JCTextField" name="txt_authorName">
+        <Component class="app.bolivia.swing.JCTextField" name="txt_studentId">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="66" red="66" type="rgb"/>
@@ -297,60 +297,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="17" style="0"/>
             </Property>
-            <Property name="placeholder" type="java.lang.String" value="Enter Author Name"/>
+            <Property name="placeholder" type="java.lang.String" value="Enter Student ID"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_authorNameActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_studentIdActionPerformed"/>
           </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="400" width="330" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="app.bolivia.swing.JCTextField" name="txt_quantity">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="66" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                <MatteColorBorder bottom="2" left="0" right="0" top="0">
-                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-                </MatteColorBorder>
-              </Border>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="17" style="0"/>
-            </Property>
-            <Property name="placeholder" type="java.lang.String" value="Enter Quantity"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_quantityActionPerformed"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="520" width="330" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="app.bolivia.swing.JCTextField" name="txt_bookId">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="66" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                <MatteColorBorder bottom="2" left="0" right="0" top="0">
-                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-                </MatteColorBorder>
-              </Border>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="17" style="0"/>
-            </Property>
-            <Property name="placeholder" type="java.lang.String" value="Enter Book ID&#xa;"/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="110" y="170" width="330" height="-1"/>
@@ -393,6 +344,53 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="50" y="590" width="130" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="combo_Branch">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="17" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="6">
+                <StringItem index="0" value="IT"/>
+                <StringItem index="1" value="CS"/>
+                <StringItem index="2" value="EXTC"/>
+                <StringItem index="3" value="AIDS"/>
+                <StringItem index="4" value="CHEMICAL"/>
+                <StringItem index="5" value=" "/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="120" y="530" width="320" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="combo_CourseName">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="17" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="B.Tech"/>
+                <StringItem index="1" value="M.Tech"/>
+                <StringItem index="2" value=" "/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="120" y="410" width="320" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -490,9 +488,9 @@
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/AddNewBookIcons/icons8_Books_52px_1.png"/>
+              <Image iconType="3" name="/AddNewBookIcons/icons8_Student_Male_100px.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Manage Books"/>
+            <Property name="text" type="java.lang.String" value="Manage Students"/>
           </Properties>
         </Component>
       </SubComponents>

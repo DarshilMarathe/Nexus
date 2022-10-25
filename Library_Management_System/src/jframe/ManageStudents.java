@@ -37,13 +37,13 @@ public class ManageStudents extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txt_bookName = new app.bolivia.swing.JCTextField();
-        txt_authorName = new app.bolivia.swing.JCTextField();
-        txt_quantity = new app.bolivia.swing.JCTextField();
-        txt_bookId = new app.bolivia.swing.JCTextField();
+        txt_studentName = new app.bolivia.swing.JCTextField();
+        txt_studentId = new app.bolivia.swing.JCTextField();
         rSMaterialButtonRectangle1 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle2 = new rojerusan.RSMaterialButtonRectangle();
         rSMaterialButtonRectangle3 = new rojerusan.RSMaterialButtonRectangle();
+        combo_Branch = new javax.swing.JComboBox<>();
+        combo_CourseName = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -98,7 +98,7 @@ public class ManageStudents extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Book ID");
+        jLabel3.setText("Student ID");
         jLabel3.setToolTipText("");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
@@ -110,7 +110,7 @@ public class ManageStudents extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Quantity");
+        jLabel5.setText("Branch");
         jLabel5.setToolTipText("");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, -1, -1));
 
@@ -122,7 +122,7 @@ public class ManageStudents extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Book Name");
+        jLabel7.setText("Student Name");
         jLabel7.setToolTipText("");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
 
@@ -134,48 +134,31 @@ public class ManageStudents extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Author Name");
+        jLabel9.setText("Select Course");
         jLabel9.setToolTipText("");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
 
-        txt_bookName.setBackground(new java.awt.Color(102, 102, 255));
-        txt_bookName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_bookName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_bookName.setPlaceholder("Enter Book Name");
-        txt_bookName.addActionListener(new java.awt.event.ActionListener() {
+        txt_studentName.setBackground(new java.awt.Color(102, 102, 255));
+        txt_studentName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_studentName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        txt_studentName.setPlaceholder("Enter Student Name");
+        txt_studentName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_bookNameActionPerformed(evt);
+                txt_studentNameActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 330, -1));
+        jPanel1.add(txt_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 330, -1));
 
-        txt_authorName.setBackground(new java.awt.Color(102, 102, 255));
-        txt_authorName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_authorName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_authorName.setPlaceholder("Enter Author Name");
-        txt_authorName.addActionListener(new java.awt.event.ActionListener() {
+        txt_studentId.setBackground(new java.awt.Color(102, 102, 255));
+        txt_studentId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_studentId.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        txt_studentId.setPlaceholder("Enter Student ID");
+        txt_studentId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_authorNameActionPerformed(evt);
+                txt_studentIdActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_authorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 330, -1));
-
-        txt_quantity.setBackground(new java.awt.Color(102, 102, 255));
-        txt_quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_quantity.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_quantity.setPlaceholder("Enter Quantity");
-        txt_quantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_quantityActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 330, -1));
-
-        txt_bookId.setBackground(new java.awt.Color(102, 102, 255));
-        txt_bookId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_bookId.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_bookId.setPlaceholder("Enter Book ID\n");
-        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 330, -1));
+        jPanel1.add(txt_studentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 330, -1));
 
         rSMaterialButtonRectangle1.setBackground(new java.awt.Color(255, 51, 51));
         rSMaterialButtonRectangle1.setText("UPDATE");
@@ -188,6 +171,14 @@ public class ManageStudents extends javax.swing.JFrame {
         rSMaterialButtonRectangle3.setBackground(new java.awt.Color(255, 51, 51));
         rSMaterialButtonRectangle3.setText("add");
         jPanel1.add(rSMaterialButtonRectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 130, -1));
+
+        combo_Branch.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        combo_Branch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IT", "CS", "EXTC", "AIDS", "CHEMICAL", " " }));
+        jPanel1.add(combo_Branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 530, 320, 30));
+
+        combo_CourseName.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        combo_CourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "B.Tech", "M.Tech", " " }));
+        jPanel1.add(combo_CourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 320, 30));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -227,8 +218,8 @@ public class ManageStudents extends javax.swing.JFrame {
         jLabel11.setBackground(new java.awt.Color(255, 51, 51));
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Books_52px_1.png"))); // NOI18N
-        jLabel11.setText("Manage Books");
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Student_Male_100px.png"))); // NOI18N
+        jLabel11.setText("Manage Students");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -292,21 +283,17 @@ public class ManageStudents extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel4MouseClicked
 
-    private void txt_authorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_authorNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_authorNameActionPerformed
-
     private void rSMaterialButtonRectangle5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rSMaterialButtonRectangle5ActionPerformed
 
-    private void txt_bookNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bookNameActionPerformed
+    private void txt_studentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_studentNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_bookNameActionPerformed
+    }//GEN-LAST:event_txt_studentNameActionPerformed
 
-    private void txt_quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_quantityActionPerformed
+    private void txt_studentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_studentIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_quantityActionPerformed
+    }//GEN-LAST:event_txt_studentIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,6 +332,8 @@ public class ManageStudents extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> combo_Branch;
+    private javax.swing.JComboBox<String> combo_CourseName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -363,9 +352,7 @@ public class ManageStudents extends javax.swing.JFrame {
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle3;
-    private app.bolivia.swing.JCTextField txt_authorName;
-    private app.bolivia.swing.JCTextField txt_bookId;
-    private app.bolivia.swing.JCTextField txt_bookName;
-    private app.bolivia.swing.JCTextField txt_quantity;
+    private app.bolivia.swing.JCTextField txt_studentId;
+    private app.bolivia.swing.JCTextField txt_studentName;
     // End of variables declaration//GEN-END:variables
 }
