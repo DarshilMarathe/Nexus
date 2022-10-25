@@ -1,5 +1,7 @@
 package jframe;
 
+//import javax.swing.JOptionPane;
+//import java.sql.*;
 /**
  *
  * @author laksh doshi
@@ -12,6 +14,22 @@ public class log_in_page extends javax.swing.JFrame {
     public log_in_page() {
         initComponents();
     }
+    /* public boolean validatelogin()
+    {
+        // String txt_username , txt_password;
+       String name = txt_username.getText();
+        String pwd = txt_password.getText();
+        
+        if(name.equals(" ")){
+            JOptionPane.showMessageDialog(this,"PLEASE ENTER USERNAME");
+            return false;
+        }
+        if(pwd.equals(" ")){
+            JOptionPane.showMessageDialog(this,"PLEASE ENTER PASSWORD");
+            return false;
+        }
+        return true;
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,7 +194,7 @@ public class log_in_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-   System.exit(0);        // TODO add your handling code here:
+         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
