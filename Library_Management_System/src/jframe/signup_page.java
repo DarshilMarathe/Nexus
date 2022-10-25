@@ -37,6 +37,10 @@ public class signup_page extends javax.swing.JFrame {
             
             if(updatedRowCount> 0){
                 JOptionPane.showMessageDialog(this,"Record Inserted Successfully");
+                log_in_page page = new log_in_page();
+                
+                page.setVisible(true);
+                dispose();
             }
             else{ 
                 JOptionPane.showMessageDialog(this,"Record Insertion Failure");
