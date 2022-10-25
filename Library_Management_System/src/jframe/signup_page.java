@@ -45,7 +45,60 @@ public class signup_page extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+//Validation
+    
+    public boolean validateSignUp(){
+    String name = txt_username.getText();
+        String pwd = txt_password.getText();
+        String email = txt_email.getText();
+        String contact = txt_contact.getText();
+        
+        if(name.equals("")){
+        JOptionPane.showMessageDialog(this,"please enter username");
+        return false;
+        }
+                if(pwd.equals("")){
+        JOptionPane.showMessageDialog(this,"please enter password");
+        return false;
+        }
+                        if(email.equals("") || !email.matches("^.+@.+\\..+$")){
+        JOptionPane.showMessageDialog(this,"please enter valid email");
+        return false;
+        }
+                                if(contact.equals("")){
+        JOptionPane.showMessageDialog(this,"please enter contact");
+        return false;
+        }
+        
+        return true;
+    }
+    
+    //check dupliacte users
+public boolean checkDuplicateUser(){
+    String name = txt_username.getText();
+    boolean isExist = false;
+    
+    try{
+        Connection con = DBConnection.getConnection();
+        PreparedStatement pst = con.prepareStatement("select * from users where name = ?");
+        pst.setString(1,name);
+        ResultSet  rs = pst.executeQuery();
+        
+        if(rs.next())
+        {
+            isExist = true;
+        }
+        else{
+        isExist =false;
+        }
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+    
+    return isExist;
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,6 +193,11 @@ public class signup_page extends javax.swing.JFrame {
 
         txt_username.setBackground(new java.awt.Color(102, 102, 255));
         txt_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_usernameFocusLost(evt);
+            }
+        });
         txt_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_usernameActionPerformed(evt);
@@ -267,12 +325,26 @@ public class signup_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        insertSignupDetails();
+    if(validateSignUp()==true)
+    {
+        if(checkDuplicateUser()==false){
+        insertSignupDetails();}
+        else{
+        JOptionPane.showMessageDialog(this,"username already exists ");
+        }
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
       System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void txt_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusLost
+        if(checkDuplicateUser()==true){
+            JOptionPane.showMessageDialog(this,"username already exists ");
+            
+    }
+    }//GEN-LAST:event_txt_usernameFocusLost
 
     /**
      * @param args the command line arguments
