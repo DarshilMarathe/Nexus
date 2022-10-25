@@ -8,12 +8,12 @@ package jframe;
  *
  * @author abhi
  */
-public class ManageBooks extends javax.swing.JFrame {
+public class ManageStudents extends javax.swing.JFrame {
     
     /**
      * Creates new form ManageBooks
      */
-    public ManageBooks() {
+    public ManageStudents() {
         initComponents();
     }
 
@@ -50,7 +50,6 @@ public class ManageBooks extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -188,11 +187,6 @@ public class ManageBooks extends javax.swing.JFrame {
 
         rSMaterialButtonRectangle3.setBackground(new java.awt.Color(255, 51, 51));
         rSMaterialButtonRectangle3.setText("add");
-        rSMaterialButtonRectangle3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSMaterialButtonRectangle3ActionPerformed(evt);
-            }
-        });
         jPanel1.add(rSMaterialButtonRectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 130, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -314,10 +308,6 @@ public class ManageBooks extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_quantityActionPerformed
 
-    private void rSMaterialButtonRectangle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -335,20 +325,21 @@ public class ManageBooks extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageBooks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStudents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageBooks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStudents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageBooks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStudents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageBooks.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageStudents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageBooks().setVisible(true);
+                new ManageStudents().setVisible(true);
             }
         });
     }
