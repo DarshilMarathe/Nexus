@@ -1,7 +1,11 @@
 package jframe;
 
-//import javax.swing.JOptionPane;
-//import java.sql.*;
+import javax.swing.JOptionPane;
+//import java.sql.DriveManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+// import java.util.Connection;
+import static jframe.DBConnection.con;
 /**
  *
  * @author laksh doshi
@@ -14,7 +18,7 @@ public class log_in_page extends javax.swing.JFrame {
     public log_in_page() {
         initComponents();
     }
-    /* public boolean validatelogin()
+    public boolean validatelogin()
     {
         // String txt_username , txt_password;
        String name = txt_username.getText();
@@ -29,7 +33,41 @@ public class log_in_page extends javax.swing.JFrame {
             return false;
         }
         return true;
-    }*/
+    }
+    
+    //verify cred
+    public void login()
+    {
+        String name = txt_username.getText();
+        String pwd = txt_password.getText();
+        
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+         //  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms","root","");
+        PreparedStatement pst = con.prepareStatement("select *from users where name = ? and password = ?");
+        
+        pst.setString(1,name);
+        pst.setString(2,pwd);
+        
+        ResultSet rs = pst.executeQuery();
+        if((rs.next()))
+        {
+            JOptionPane.showMessageDialog(this,"LOGIN SUCCESSFULL");
+            Homepage home = new Homepage();
+            home.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Incorrect username or password");
+        }
+        
+        catch(Exception e){
+                e.printStackTrace();
+                }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,6 +135,11 @@ public class log_in_page extends javax.swing.JFrame {
 
         jTextField1.setBackground(new java.awt.Color(102, 102, 255));
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -186,7 +229,10 @@ public class log_in_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+            if(validatelogin())
+            {
+                login();
+            }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -196,6 +242,10 @@ public class log_in_page extends javax.swing.JFrame {
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
          System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1FocusLost
 
     /**
      * @param args the command line arguments
