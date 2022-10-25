@@ -48,11 +48,13 @@ public class Homepage extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jPanel28 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        rSTableMetro1 = new rojeru_san.complementos.RSTableMetro();
+        jLabel32 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        rSTableMetro2 = new rojeru_san.complementos.RSTableMetro();
+        jLabel33 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -261,8 +263,8 @@ public class Homepage extends javax.swing.JFrame {
 
         jPanel22.add(jPanel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 150, 100));
 
-        jLabel24.setText("NUMBER OF STUDENTS");
-        jPanel22.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+        jLabel24.setText("Student Details");
+        jPanel22.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 130, -1));
 
         jLabel25.setText("NUMBER OF BOOKS");
         jPanel22.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
@@ -273,76 +275,56 @@ public class Homepage extends javax.swing.JFrame {
         jLabel27.setText("RETURNED BOOKS");
         jPanel22.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {" 001", " laksh doshi", "  software", "  IT"},
-                {" 002 ", "  Abhigyan", "  software", " IT"},
-                {" 003", "  Darshil", "   hardware", "   IT"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Student_id", "Name", "Course", "Branch"
-            }
-        ));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel22.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 330, 190));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"B001", "  JAVA", "  lad", "  22"},
-                {"B002", "  C++", "  jay", "   70-1"},
-                {"B003", "  Horny H", "  huzaifa", "    69"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Book_Id", "Book name", "Author", "No of books"
-            }
-        ));
-        jTable2.setColumnSelectionAllowed(true);
-        jTable2.setShowGrid(true);
-        jScrollPane2.setViewportView(jTable2);
-        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        jPanel22.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 330, 210));
-
         jPanel28.setBackground(new java.awt.Color(153, 255, 255));
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
         jPanel28Layout.setHorizontalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 330, Short.MAX_VALUE)
         );
 
-        jPanel22.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 450, 330));
+        jPanel22.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 340, 330));
+
+        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(rSTableMetro1);
+
+        jPanel22.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 480, 160));
+
+        jLabel32.setText("NUMBER OF STUDENTS");
+        jPanel22.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
+
+        rSTableMetro2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(rSTableMetro2);
+
+        jPanel22.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 480, 160));
+
+        jLabel33.setText("NUMBER OF STUDENTS");
+        jPanel22.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         getContentPane().add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 980, 630));
 
@@ -592,6 +574,8 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -624,9 +608,9 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private rojeru_san.complementos.RSTableMetro rSTableMetro1;
+    private rojeru_san.complementos.RSTableMetro rSTableMetro2;
     // End of variables declaration//GEN-END:variables
 }
