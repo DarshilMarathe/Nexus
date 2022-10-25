@@ -226,7 +226,7 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 51));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Books_52px_1.png"))); // NOI18N
         jLabel10.setText("  Student Details");
-        panel_main.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 130, -1, -1));
+        panel_main.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 130, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(153, 255, 153));
 
@@ -241,7 +241,7 @@ public class IssueBook extends javax.swing.JFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        panel_main.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 220, -1, -1));
+        panel_main.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 220, -1, -1));
 
         getContentPane().add(panel_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1410, 800));
 
