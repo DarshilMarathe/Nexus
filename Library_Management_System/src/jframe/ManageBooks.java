@@ -317,8 +317,8 @@ public class ManageBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        //Homepage home = new Homepage();
-        //home.setVisible(true);
+        Homepage home = new Homepage();
+        home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 

@@ -470,6 +470,11 @@ public class Homepage extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Book_26px.png"))); // NOI18N
         jLabel16.setText("MANAGE BOOKS");
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
         jPanel14.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 160, 20));
 
         jPanel15.setBackground(new java.awt.Color(51, 51, 51));
@@ -560,6 +565,12 @@ public class Homepage extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
               System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        ManageBooks books = new ManageBooks();
+        books.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel16MouseClicked
 
     /**
      * @param args the command line arguments
