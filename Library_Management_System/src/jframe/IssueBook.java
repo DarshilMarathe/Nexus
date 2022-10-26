@@ -573,8 +573,8 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        //Homepage home = new Homepage();
-        //home.setVisible(true);
+        Homepage home = new Homepage();
+        home.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
