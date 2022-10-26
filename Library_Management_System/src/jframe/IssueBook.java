@@ -43,8 +43,29 @@ public class IssueBook extends javax.swing.JFrame {
      catch(Exception e){
          e.printStackTrace();
      }
+ }
  
- 
+  //to fetche student details from database
+ public  void getStudentDetails(){
+     int studentId = Integer.parseInt(txt_bookId1.getText());
+     
+     try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("select * from student_details where student_id=?"); 
+            pst.setInt(1,studentId);
+            ResultSet rs =  pst.executeQuery();
+            
+            while(rs.next())
+            {
+                lbl_studentId.setText(rs.getString("student_id"));
+                lbl_studentName.setText(rs.getString("name"));
+                lbl_course.setText(rs.getString("course"));
+                lbl_branch.setText(rs.getString("branch"));
+            }
+     }
+     catch(Exception e){
+         e.printStackTrace();
+     }
  }
 
     /**
@@ -388,6 +409,11 @@ public class IssueBook extends javax.swing.JFrame {
         txt_bookId1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 153, 0)));
         txt_bookId1.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         txt_bookId1.setPlaceholder("Enter Student ID ");
+        txt_bookId1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_bookId1FocusLost(evt);
+            }
+        });
         txt_bookId1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_bookId1ActionPerformed(evt);
@@ -461,8 +487,16 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
 
     private void txt_bookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookIdFocusLost
+        if(!txt_bookId.getText().equals("")){
         getBookDetails();
+        }
     }//GEN-LAST:event_txt_bookIdFocusLost
+
+    private void txt_bookId1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookId1FocusLost
+                if(!txt_bookId1.getText().equals("")){
+        getStudentDetails();
+        }
+    }//GEN-LAST:event_txt_bookId1FocusLost
 
     /**
      * @param args the command line arguments

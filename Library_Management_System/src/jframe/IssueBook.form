@@ -690,6 +690,7 @@
             <Property name="placeholder" type="java.lang.String" value="Enter Student ID "/>
           </Properties>
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_bookId1FocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_bookId1ActionPerformed"/>
           </Events>
           <Constraints>
