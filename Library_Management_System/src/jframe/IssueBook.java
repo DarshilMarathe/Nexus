@@ -4,6 +4,11 @@
  */
 package jframe;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author darsh
@@ -20,7 +25,26 @@ public class IssueBook extends javax.swing.JFrame {
  //to fetche book details from database
  public  void getBookDetails(){
      int bookId = Integer.parseInt(txt_bookId.getText());
-  
+     
+     try{
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("select * from book_details where books_id=?"); 
+            pst.setInt(1,bookId);
+            ResultSet rs =  pst.executeQuery();
+            
+            while(rs.next())
+            {
+                lbl_bookId.setText(rs.getString("books_id"));
+                lbl_bookName.setText(rs.getString("book_name"));
+                lbl_author.setText(rs.getString("author"));
+                lbl_quantity.setText(rs.getString("quantity"));
+            }
+     }
+     catch(Exception e){
+         e.printStackTrace();
+     }
+ 
+ 
  }
 
     /**
@@ -337,6 +361,11 @@ public class IssueBook extends javax.swing.JFrame {
         txt_bookId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 153, 0)));
         txt_bookId.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         txt_bookId.setPlaceholder("Enter Book ID\n");
+        txt_bookId.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_bookIdFocusLost(evt);
+            }
+        });
         txt_bookId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_bookIdActionPerformed(evt);
@@ -431,10 +460,14 @@ public class IssueBook extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
 
+    private void txt_bookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookIdFocusLost
+        getBookDetails();
+    }//GEN-LAST:event_txt_bookIdFocusLost
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -453,7 +486,7 @@ public class IssueBook extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(IssueBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(IssueBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IssueBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
