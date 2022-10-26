@@ -5,11 +5,14 @@
 package jframe;
 
 //import com.mysql.cj.xdevapi.Statement;
-import java.sql.Connection;
+//import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Statement;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 //import javax.swing.table;
 //import java.sql.*;
 
@@ -23,8 +26,8 @@ import java.sql.Statement;
 public class ManageBooks extends javax.swing.JFrame {
     
     DefaultTableModel model;
-   // String bookNname,author;
-   // int book_id,quantity;
+    String bookName,author;
+    int bookId,quantity;
    
     /**
      * Creates new form ManageBooks
@@ -71,7 +74,39 @@ public class ManageBooks extends javax.swing.JFrame {
     }
     
     // to add book to book_details table
-   
+   public boolean addBook()
+   {
+       boolean isAdded = false;
+       bookId = Integer.parseInt(txt_bookId.getText());
+       bookName = txt_bookName.getText();
+       author = txt_authorName.getText();
+       quantity = Integer.parseInt(txt_quantity.getText());
+       
+       try
+       {
+           connection con = DBConnection.getConnection();
+           String sql = "insert into book_details values(?,?,?,?)";
+           
+           PreparedStatement pst = con.prepareStatement(sql);
+           pst.setInt(1,bookId);
+           pst.setString(2,bookName);
+           pst.setString(3,author);
+           pst.setInt(4,quantity);
+           
+           int rowCount = pst.executeUpdate();
+           if(rowCount>0){
+               isAdded = true;
+           }
+           else{
+               isAdded = false;
+           }
+       }
+       catch(Exception e)
+       {
+           e.printStackTrace();
+       }
+       return isAdded;
+   }
     
 
     /**
@@ -388,7 +423,16 @@ public class ManageBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_quantityActionPerformed
 
     private void rSMaterialButtonRectangle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle3ActionPerformed
-        // TODO add your handling code here:
+if(addBook()==true)
+{
+JOptionPane.showMessageDialog(this,"Book Added");
+setBookDetailsToTable();
+}
+// TODO add your handling code here:
+else
+{
+    JOptionPane.showMessageDialog(this,"Book Addition Failed");
+}
     }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
 
     private void tbl_bookDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_bookDetailsMouseClicked
