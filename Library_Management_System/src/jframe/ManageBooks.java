@@ -13,8 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.Statement;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
-//import javax.swing.table;
-//import java.sql.*;
+import javax.swing.table.TableModel;
 
 
 //import javax.swing.table.TableModel;
@@ -34,7 +33,7 @@ public class ManageBooks extends javax.swing.JFrame {
      */
     public ManageBooks() {
         initComponents();
-         setBookDetailsToTable();
+        setBookDetailsToTable();
     }
 
     
@@ -56,7 +55,7 @@ public class ManageBooks extends javax.swing.JFrame {
                 
                 while(rs.next())
                 {
-                    String bookId = rs.getString("book_id");
+                    String bookId = rs.getString("books_id");
                     String bookName = rs.getString("book_name");
                     String author = rs.getString("author");
                     int quantity = rs.getInt("quantity");
@@ -84,7 +83,7 @@ public class ManageBooks extends javax.swing.JFrame {
        
        try
        {
-           connection con = DBConnection.getConnection();
+           Connection con = DBConnection.getConnection();
            String sql = "insert into book_details values(?,?,?,?)";
            
            PreparedStatement pst = con.prepareStatement(sql);
@@ -337,21 +336,7 @@ public class ManageBooks extends javax.swing.JFrame {
 
         tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Book_Id", "Name", "Authore", "No of books"
@@ -403,7 +388,7 @@ public class ManageBooks extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void txt_authorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_authorNameActionPerformed
@@ -437,7 +422,7 @@ else
 
     private void tbl_bookDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_bookDetailsMouseClicked
      int rowNo = tbl_bookDetails.getSelectedRow();
-     //TableModel model = tbl_bookDetails.getModel();
+     TableModel model = tbl_bookDetails.getModel();
 
       txt_bookId.setText(model.getValueAt(rowNo,0).toString());
           txt_bookName.setText(model.getValueAt(rowNo,1).toString());
