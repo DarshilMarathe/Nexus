@@ -49,7 +49,7 @@ public class ManageStudents extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        rSTableMetro2 = new rojeru_san.complementos.RSTableMetro();
+        tbl_studentDetail = new rojeru_san.complementos.RSTableMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,21 +223,8 @@ public class ManageStudents extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Student_Male_100px.png"))); // NOI18N
         jLabel11.setText("Manage Students");
 
-        rSTableMetro2.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_studentDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
@@ -245,7 +232,7 @@ public class ManageStudents extends javax.swing.JFrame {
                 "Student_Id", "Name", "Class", "Year"
             }
         ));
-        jScrollPane4.setViewportView(rSTableMetro2);
+        jScrollPane4.setViewportView(tbl_studentDetail);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -385,7 +372,7 @@ public class ManageStudents extends javax.swing.JFrame {
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle1;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle2;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle3;
-    private rojeru_san.complementos.RSTableMetro rSTableMetro2;
+    private rojeru_san.complementos.RSTableMetro tbl_studentDetail;
     private app.bolivia.swing.JCTextField txt_studentId;
     private app.bolivia.swing.JCTextField txt_studentName;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,8 @@
  */
 package jframe;
 
+import java.awt.Color;
+
 /*import java.awt.BorderLayout;
 import java.awt.Color;
 import org.jfree.chart.ChartFactory;
@@ -21,6 +23,9 @@ public class Homepage extends javax.swing.JFrame {
     /**
      * Creates new form Homepage
      */
+    Color mouseEnterColor = new Color(0,0,0);
+    Color mouseExitColor = new Color(51,51,51);
+    
     public Homepage() {
         initComponents();
         //showPieChart();
@@ -474,6 +479,12 @@ public class Homepage extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel16MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel16MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel16MouseExited(evt);
+            }
         });
         jPanel14.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 160, 20));
 
@@ -541,6 +552,14 @@ public class Homepage extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Read_Online_26px.png"))); // NOI18N
         jLabel22.setText("MANAGE STUDENTS");
+        jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel22MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel22MouseExited(evt);
+            }
+        });
         jPanel20.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 160, 20));
 
         jPanel21.setBackground(new java.awt.Color(51, 51, 51));
@@ -571,6 +590,22 @@ public class Homepage extends javax.swing.JFrame {
         books.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseEntered
+        jPanel14.setBackground(mouseEnterColor);
+    }//GEN-LAST:event_jLabel16MouseEntered
+
+    private void jLabel16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseExited
+        jPanel14.setBackground(mouseExitColor);
+    }//GEN-LAST:event_jLabel16MouseExited
+
+    private void jLabel22MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseEntered
+        jPanel20.setBackground(mouseEnterColor);
+    }//GEN-LAST:event_jLabel22MouseEntered
+
+    private void jLabel22MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseExited
+        jPanel20.setBackground(mouseExitColor);
+    }//GEN-LAST:event_jLabel22MouseExited
 
     /**
      * @param args the command line arguments

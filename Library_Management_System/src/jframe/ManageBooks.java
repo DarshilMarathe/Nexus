@@ -4,7 +4,7 @@
  */
 package jframe;
 
-import com.mysql.cj.xdevapi.Statement;
+//import com.mysql.cj.xdevapi.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
