@@ -362,6 +362,11 @@ public class Homepage extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Exit_26px_2.png"))); // NOI18N
         jLabel8.setText("LOGOUT");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 160, 20));
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
@@ -635,6 +640,12 @@ public class Homepage extends javax.swing.JFrame {
         mstudent.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel22MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        log_in_page npage = new log_in_page();
+        npage.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
