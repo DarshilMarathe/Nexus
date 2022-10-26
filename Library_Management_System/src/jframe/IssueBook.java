@@ -579,7 +579,9 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
-        // TODO add your handling code here:
+        Homepage home =new Homepage();
+        home.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jPanel9MouseClicked
 
     private void txt_bookIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bookIdActionPerformed
