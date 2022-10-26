@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Statement;
+//import javax.swing.table;
 //import java.sql.*;
 
 
@@ -22,11 +23,15 @@ import java.sql.Statement;
 public class ManageBooks extends javax.swing.JFrame {
     
     DefaultTableModel model;
+   // String bookNname,author;
+   // int book_id,quantity;
+   
     /**
      * Creates new form ManageBooks
      */
     public ManageBooks() {
         initComponents();
+         setBookDetailsToTable();
     }
 
     
@@ -35,7 +40,7 @@ public class ManageBooks extends javax.swing.JFrame {
     
         try{
         
-//                Connection con = DBConnection.getConnection();
+//               Connection con = DBConnection.getConnection();
 
             Class.forName("com.mysql.jdbc.Driver");
              Connection con = DriverManager.getConnection("jdbc:mysql://localhost:8111/library_ms","root","");
@@ -64,6 +69,9 @@ public class ManageBooks extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    // to add book to book_details table
+   
     
 
     /**
@@ -101,6 +109,7 @@ public class ManageBooks extends javax.swing.JFrame {
         tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
@@ -247,6 +256,7 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel1.add(rSMaterialButtonRectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 130, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(255, 51, 51));
         jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,11 +291,14 @@ public class ManageBooks extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(584, 0, -1, -1));
+
         jLabel11.setBackground(new java.awt.Color(255, 51, 51));
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 51, 51));
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Books_52px_1.png"))); // NOI18N
         jLabel11.setText("Manage Books");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 68, 340, -1));
 
         tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -309,34 +322,14 @@ public class ManageBooks extends javax.swing.JFrame {
                 "Book_Id", "Name", "Authore", "No of books"
             }
         ));
+        tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_bookDetailsMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tbl_bookDetails);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(181, 181, 181))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
-                .addGap(65, 65, 65)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 185, 604, 350));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -350,14 +343,13 @@ public class ManageBooks extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(1285, 713));
+        setSize(new java.awt.Dimension(1271, 706));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -398,6 +390,17 @@ public class ManageBooks extends javax.swing.JFrame {
     private void rSMaterialButtonRectangle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
+
+    private void tbl_bookDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_bookDetailsMouseClicked
+     int rowNo = tbl_bookDetails.getSelectedRow();
+     //TableModel model = tbl_bookDetails.getModel();
+
+      txt_bookId.setText(model.getValueAt(rowNo,0).toString());
+          txt_bookName.setText(model.getValueAt(rowNo,1).toString());
+          txt_authorName.setText(model.getValueAt(rowNo,2).toString());
+          txt_quantity.setText(model.getValueAt(rowNo,3).toString());
+// TODO add your handling code here:
+    }//GEN-LAST:event_tbl_bookDetailsMouseClicked
 
     /**
      * @param args the command line arguments
