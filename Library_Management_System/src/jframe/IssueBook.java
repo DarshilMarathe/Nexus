@@ -591,16 +591,20 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_bookId1ActionPerformed
 
     private void rSMaterialButtonRectangle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle3ActionPerformed
-        if (isAlreadyissued() == false) {
-            if (issueBook() == true) {
-                JOptionPane.showMessageDialog(this, "book Issued Succesfully");
-                updateBookCount();
+
+        if (lbl_quantity.getText().equals("0")) {
+            JOptionPane.showMessageDialog(this, "Book is not available");
+        } else {
+            if (isAlreadyissued() == false) {
+                if (issueBook() == true) {
+                    JOptionPane.showMessageDialog(this, "book Issued Succesfully");
+                    updateBookCount();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Cant Issue  book ");
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Cant Issue  book ");
+                JOptionPane.showMessageDialog(this, "Already issued this book to the student");
             }
-        }  
-        else{
-            JOptionPane.showMessageDialog(this, "Already issued this book to the student");
         }
 
 
