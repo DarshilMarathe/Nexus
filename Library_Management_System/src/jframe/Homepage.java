@@ -398,12 +398,23 @@ public class Homepage extends javax.swing.JFrame {
 
         tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Book_Id", "Name", "Authore", "No of books"
             }
         ));
+        tbl_bookDetails.setRowHeight(30);
         jScrollPane3.setViewportView(tbl_bookDetails);
 
         jPanel22.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 460, 300));
@@ -413,12 +424,21 @@ public class Homepage extends javax.swing.JFrame {
 
         tbl_studentDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Student_Id", "Name", "Class", "Year"
             }
         ));
+        tbl_studentDetails.setRowHeight(30);
+        tbl_studentDetails.setShowGrid(true);
         jScrollPane4.setViewportView(tbl_studentDetails);
 
         jPanel22.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 440, 300));

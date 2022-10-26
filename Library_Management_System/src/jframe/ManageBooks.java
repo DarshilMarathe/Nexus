@@ -405,6 +405,7 @@ public class ManageBooks extends javax.swing.JFrame {
                 "Book_Id", "Name", "Authore", "No of books"
             }
         ));
+        tbl_bookDetails.setRowHeight(35);
         tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_bookDetailsMouseClicked(evt);
