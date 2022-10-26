@@ -62,13 +62,47 @@ public class ReturnBook extends javax.swing.JFrame {
         }
  
     }
+    
+    
+//returns book
+    public boolean returnBook()
+    {
+        boolean isReturned = false;
+        
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        int studentId = Integer.parseInt(txt_bookId1.getText());
+        try{
+            Connection con = DBConnection.getConnection();
+            String sql = "update issue_book_details set status = ? where student_id =?  and book_id =? and status = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, "returned");
+            pst.setInt(2, studentId);
+            pst.setInt(3, bookId);
+            pst.setString(4, "pending");
+           
+            int rowCount = pst.executeUpdate();
+            
+            if(rowCount>0)
+            {
+                    isReturned = true;
+            }
+            else{
+            isReturned=false;}
+            
+        }
+        catch(Exception e){e.printStackTrace();}
+        
+        
+        
+        return isReturned;
+    }
 
     //Updates count when issued
     public void updateBookCount() {
         int bookId = Integer.parseInt(txt_bookId.getText());
         try {
             Connection con = DBConnection.getConnection();
-            String sql = "update book_details set quantity = quantity-1 where books_id =?";
+            String sql = "update book_details set quantity = quantity+1 where books_id =?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setInt(1, bookId);
 
@@ -76,8 +110,8 @@ public class ReturnBook extends javax.swing.JFrame {
 
             if (rowCount > 0) {
                 JOptionPane.showMessageDialog(this, "Book count updated");
-                int initialCount = Integer.parseInt(lbl_dueDate.getText());
-                lbl_dueDate.setText(Integer.toString(initialCount - 1));
+                
+                
 
             } else {
 
@@ -405,6 +439,15 @@ public class ReturnBook extends javax.swing.JFrame {
 
     private void rSMaterialButtonRectangle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle3ActionPerformed
 
+        if(returnBook()==true)
+        {
+            JOptionPane.showMessageDialog(this, "Book Returned Succesfully");
+            updateBookCount();
+        }
+        else
+         {
+            JOptionPane.showMessageDialog(this, "Book Returned Failes");
+        }
     }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
 
     private void txt_bookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookIdFocusLost
