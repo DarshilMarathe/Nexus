@@ -7,6 +7,8 @@ package jframe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
@@ -21,52 +23,148 @@ public class IssueBook extends javax.swing.JFrame {
     public IssueBook() {
         initComponents();
     }
-    
- //to fetche book details from database
- public  void getBookDetails(){
-     int bookId = Integer.parseInt(txt_bookId.getText());
-     
-     try{
+
+    //to fetche book details from database
+    public void getBookDetails() {
+        int bookId = Integer.parseInt(txt_bookId.getText());
+
+        try {
             Connection con = DBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement("select * from book_details where books_id=?"); 
-            pst.setInt(1,bookId);
-            ResultSet rs =  pst.executeQuery();
-            
-            while(rs.next())
-            {
+            PreparedStatement pst = con.prepareStatement("select * from book_details where books_id=?");
+            pst.setInt(1, bookId);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
                 lbl_bookId.setText(rs.getString("books_id"));
                 lbl_bookName.setText(rs.getString("book_name"));
                 lbl_author.setText(rs.getString("author"));
                 lbl_quantity.setText(rs.getString("quantity"));
+            } else {
+                lbl_bookError.setText("Invalid");
             }
-     }
-     catch(Exception e){
-         e.printStackTrace();
-     }
- }
- 
-  //to fetche student details from database
- public  void getStudentDetails(){
-     int studentId = Integer.parseInt(txt_bookId1.getText());
-     
-     try{
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //to fetche student details from database
+    public void getStudentDetails() {
+        int studentId = Integer.parseInt(txt_bookId1.getText());
+
+        try {
             Connection con = DBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement("select * from student_details where student_id=?"); 
-            pst.setInt(1,studentId);
-            ResultSet rs =  pst.executeQuery();
-            
-            while(rs.next())
-            {
+            PreparedStatement pst = con.prepareStatement("select * from student_details where student_id=?");
+            pst.setInt(1, studentId);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
                 lbl_studentId.setText(rs.getString("student_id"));
                 lbl_studentName.setText(rs.getString("name"));
                 lbl_course.setText(rs.getString("course"));
                 lbl_branch.setText(rs.getString("branch"));
+            } else {
+                lbl_studentError.setText("Invalid");
             }
-     }
-     catch(Exception e){
-         e.printStackTrace();
-     }
- }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //insert issuebook details to database
+    public boolean issueBook() {
+
+        boolean isIssued = false;
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        int studentId = Integer.parseInt(txt_bookId1.getText());
+        String bookName = lbl_bookName.getText();
+        String studentName = lbl_studentName.getText();
+        Date uIssueDate = date_issueDate.getDatoFecha();
+        Date uDueDate = date_dueDate.getDatoFecha();
+
+        Long l1 = uIssueDate.getTime();
+        long l2 = uDueDate.getTime();
+        java.sql.Date sIssueDate = new java.sql.Date(l1);
+        java.sql.Date sDueDate = new java.sql.Date(l2);
+
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "insert into issue_book_details(book_id,book_name,student_id,student_name,issue_date,due_date,status) values(?,?,?,?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+            pst.setString(2, bookName);
+            pst.setInt(3, studentId);
+            pst.setString(4, studentName);
+            pst.setDate(5, sIssueDate);
+            pst.setDate(6, sDueDate);
+            pst.setString(7, "pending");
+
+            int rowCount = pst.executeUpdate();
+            if (rowCount > 0) {
+                isIssued = true;
+            } else {
+                isIssued = false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isIssued;
+    }
+
+    //Updates count when issued
+    public void updateBookCount() {
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "update book_details set quantity = quantity-1 where books_id =?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+
+            int rowCount = pst.executeUpdate();
+
+            if (rowCount > 0) {
+                JOptionPane.showMessageDialog(this, "Book count updated");
+                int initialCount = Integer.parseInt(lbl_quantity.getText());
+                lbl_quantity.setText(Integer.toString(initialCount - 1));
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Cant Update book Count");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//Check whether book already allocated or not
+    public boolean isAlreadyissued() {
+        boolean isAlreadyIssued = false;
+
+        int bookId = Integer.parseInt(txt_bookId.getText());
+        int studentId = Integer.parseInt(txt_bookId1.getText());
+
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "select * from issue_book_details where book_id=? and status=?";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, bookId);
+            pst.setInt(2, studentId);
+            pst.setString(3, "pending");
+
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                isAlreadyIssued = true;
+            } else {
+                isAlreadyIssued = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isAlreadyIssued;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,7 +180,6 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         lbl_quantity = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -91,6 +188,8 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_author = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lbl_bookError = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -104,6 +203,7 @@ public class IssueBook extends javax.swing.JFrame {
         lbl_studentName = new javax.swing.JLabel();
         lbl_course = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        lbl_studentError = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -151,11 +251,6 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Book Name:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Quantity:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
 
         lbl_quantity.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_quantity.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,6 +313,15 @@ public class IssueBook extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 60));
+
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Quantity:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
+
+        lbl_bookError.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        lbl_bookError.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 600, 200, 50));
 
         panel_main.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 810));
 
@@ -320,6 +424,10 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/icons8_Student_Registration_100px_2.png"))); // NOI18N
         jLabel13.setText("  Student Details");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        lbl_studentError.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        lbl_studentError.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(lbl_studentError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, 200, 50));
 
         panel_main.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 420, 810));
 
@@ -483,25 +591,37 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_bookId1ActionPerformed
 
     private void rSMaterialButtonRectangle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle3ActionPerformed
-        // TODO add your handling code here:
+        if (isAlreadyissued() == false) {
+            if (issueBook() == true) {
+                JOptionPane.showMessageDialog(this, "book Issued Succesfully");
+                updateBookCount();
+            } else {
+                JOptionPane.showMessageDialog(this, "Cant Issue  book ");
+            }
+        }  
+        else{
+            JOptionPane.showMessageDialog(this, "Already issued this book to the student");
+        }
+
+
     }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
 
     private void txt_bookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookIdFocusLost
-        if(!txt_bookId.getText().equals("")){
-        getBookDetails();
+        if (!txt_bookId.getText().equals("")) {
+            getBookDetails();
         }
     }//GEN-LAST:event_txt_bookIdFocusLost
 
     private void txt_bookId1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookId1FocusLost
-                if(!txt_bookId1.getText().equals("")){
-        getStudentDetails();
+        if (!txt_bookId1.getText().equals("")) {
+            getStudentDetails();
         }
     }//GEN-LAST:event_txt_bookId1FocusLost
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]){
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -547,11 +667,11 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -563,11 +683,13 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lbl_author;
+    private javax.swing.JLabel lbl_bookError;
     private javax.swing.JLabel lbl_bookId;
     private javax.swing.JLabel lbl_bookName;
     private javax.swing.JLabel lbl_branch;
     private javax.swing.JLabel lbl_course;
     private javax.swing.JLabel lbl_quantity;
+    private javax.swing.JLabel lbl_studentError;
     private javax.swing.JLabel lbl_studentId;
     private javax.swing.JLabel lbl_studentName;
     private javax.swing.JPanel panel_main;
