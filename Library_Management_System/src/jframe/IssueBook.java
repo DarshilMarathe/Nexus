@@ -4,12 +4,6 @@
  */
 package jframe;
 
-import java.sql.Connection;
-import javax.swing.JOptionPane;
-//import java.util.*;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Date;
 /**
  *
  * @author darsh
@@ -26,129 +20,8 @@ public class IssueBook extends javax.swing.JFrame {
  //to fetche book details from database
  public  void getBookDetails(){
      int bookId = Integer.parseInt(txt_bookId.getText());
-     try
-     {
-         Connection con = DBConnection.getConnection();
-         PreparedStatement pst = con.prepareStatement("select *from book_details where book_id = ?");
-         pst.setInt(1,bookId);
-         ResultSet rs = pst.executeQuery();
-         
-         if(rs.next())
-         {
-             lbl_bookId.setText(rs.getString("book_id"));
-             lbl_bookName.setText(rs.getString("book_name"));
-             lbl_author.setText(rs.getString("author"));
-             lbl_quantity.setText(rs.getString("quantity"));
-         }
-         else
-         {
-             lbl_bookError.setText("Invalid Book_id");
-         }
-     }catch(Exception e){
-         e.printStackTrace();
-     }
+  
  }
- 
- //to fetche student details from database and display it to students details panel
- public  void getStudentDetails(){
-     int StudentId = Integer.parseInt(txt_StudentId.getText());
-     try
-     {
-         Connection con = DBConnection.getConnection();
-         PreparedStatement pst = con.prepareStatement("select *from Student_details where Student_id = ?");
-         pst.setInt(1,bookId);
-         ResultSet rs = pst.executeQuery();
-         
-         if(rs.next())
-         {
-             lbl_studentId.setText(rs.getString("student_id"));
-             lbl_studentName.setText(rs.getString("name"));
-             lbl_course.setText(rs.getString("course"));
-             lbl_branch.setText(rs.getString("branch"));
-         }
-         else
-         {
-             lbl_studenterror.setText("Invalid Student_id");
-         }
-     }catch(Exception e){
-         e.printStackTrace();
-     }
- }
- 
- //insert issue book details to database
- public boolean issueBook()
- {
-     boolean isIssued = false;
-     int bookid = Integer.parseInt(txt_bookid.getText());
-     int studentId = Integer.parseInt(txt_studentId.getText());
-     String bookName = lbl_bookName.getText();
-     String studentName = lbl_studentName.getText();
-     
-     Date uIssueDate = date_issueDate.getDatoFecha();
-     Date uDueDate = date_dueDate.getDatoFecha();
-     
-     Long l1 = uIssueDate.getTime();
-     Long l2 = uDueDate.getTime();
-     
-     java.sql.Date.sIssueDate = new java.sql.Date(l1);
-     java.sql.Date.sDueDate = new java.sql.Date(l2);
-     
-     try{
-         Connection con = DBConnection.getConnection();
-         String sql = "insert into issue_book_details(book_id,book_name,student_id,student_name,issue_date,due_date,status) values(?,?,?,?,?,?,?) ";
-         PreparedStatement pst = con.prepareStatement(sql);
-         pst.setInt(1, bookId);
-         pst.setString(2,bookName);
-         pst.setInt(3,studentId);
-         pst.setString(4, studentName);
-         pst.setDate(5,sIssueDate);
-         pst.setDate(6, sDueDate);
-         pst.setString(7, "pending");
-         
-         int rowCount = pst.executeUpdate();
-         if(rowCount>0){
-             isIssued = true;
-         }
-         else{
-             isIssued = false;
-         }
-     }catch(Exception e){
-         e.printStackTrace();
-     }
-     }
-     
- }
-
-//updating book count
-
-public void updateBookCount()
-{
-int bookid = Integer.paresInt(txt_bookid.getText());
-try{
-   Connection con = DBConnection.getConnection();
-   string sql = "update book_details set quantity = quantity-1 where book_id = ?";
-   PreparedStatement pst = con.prepareStatement();
-
-pst.setInt(1,bookid);
-
-int rowCount = pst.executeUpdate();
-if(rowCount>0)
-{
-JOptionPane.showMessageDialog(this,"book count Updated");
-int initialCount = Integer.parseInt(lbl_quantity.getText());
-lbl_quantity.setText(Integer.tostring(intialCount-1));
-}
-else
-{
-isIssued = false;
-}
-
-
-}catch(Exception e)
-{
-e.printStackTrace();
-}
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,17 +36,16 @@ e.printStackTrace();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        txt_bookName = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         lbl_quantity = new javax.swing.JLabel();
-        txt_author = new javax.swing.JLabel();
-        txt_bookid = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         lbl_bookId = new javax.swing.JLabel();
         lbl_bookName = new javax.swing.JLabel();
         lbl_author = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txt_quantity = new javax.swing.JLabel();
-        lbl_bookError = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -187,7 +59,6 @@ e.printStackTrace();
         lbl_studentName = new javax.swing.JLabel();
         lbl_course = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        lbl_studenterror = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -195,7 +66,7 @@ e.printStackTrace();
         txt_bookId = new app.bolivia.swing.JCTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txt_studentId = new app.bolivia.swing.JCTextField();
+        txt_bookId1 = new app.bolivia.swing.JCTextField();
         date_issueDate = new rojeru_san.componentes.RSDateChooser();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -231,24 +102,29 @@ e.printStackTrace();
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 300, 5));
 
-        txt_bookName.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        txt_bookName.setForeground(new java.awt.Color(255, 255, 255));
-        txt_bookName.setText("Book Name:");
-        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Book Name:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Quantity:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
 
         lbl_quantity.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_quantity.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(lbl_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 520, 170, 30));
 
-        txt_author.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        txt_author.setForeground(new java.awt.Color(255, 255, 255));
-        txt_author.setText("Author:");
-        jPanel1.add(txt_author, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Author:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, -1, -1));
 
-        txt_bookid.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        txt_bookid.setForeground(new java.awt.Color(255, 255, 255));
-        txt_bookid.setText("Book ID");
-        jPanel1.add(txt_bookid, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Book ID");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
         lbl_bookId.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
         lbl_bookId.setForeground(new java.awt.Color(255, 255, 255));
@@ -297,15 +173,6 @@ e.printStackTrace();
         );
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 60));
-
-        txt_quantity.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        txt_quantity.setForeground(new java.awt.Color(255, 255, 255));
-        txt_quantity.setText("Quantity:");
-        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, -1, -1));
-
-        lbl_bookError.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        lbl_bookError.setForeground(new java.awt.Color(255, 255, 0));
-        jPanel1.add(lbl_bookError, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, 280, 30));
 
         panel_main.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 810));
 
@@ -409,10 +276,6 @@ e.printStackTrace();
         jLabel13.setText("  Student Details");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
-        lbl_studenterror.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        lbl_studenterror.setForeground(new java.awt.Color(255, 255, 0));
-        jPanel3.add(lbl_studenterror, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 620, 250, 30));
-
         panel_main.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 420, 810));
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 25)); // NOI18N
@@ -474,11 +337,6 @@ e.printStackTrace();
         txt_bookId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 153, 0)));
         txt_bookId.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         txt_bookId.setPlaceholder("Enter Book ID\n");
-        txt_bookId.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_bookIdFocusLost(evt);
-            }
-        });
         txt_bookId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_bookIdActionPerformed(evt);
@@ -498,20 +356,15 @@ e.printStackTrace();
         jLabel9.setToolTipText("");
         panel_main.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 440, -1, -1));
 
-        txt_studentId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 153, 0)));
-        txt_studentId.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        txt_studentId.setPlaceholder("Enter Student ID ");
-        txt_studentId.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_studentIdFocusLost(evt);
-            }
-        });
-        txt_studentId.addActionListener(new java.awt.event.ActionListener() {
+        txt_bookId1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 153, 0)));
+        txt_bookId1.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        txt_bookId1.setPlaceholder("Enter Student ID ");
+        txt_bookId1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_studentIdActionPerformed(evt);
+                txt_bookId1ActionPerformed(evt);
             }
         });
-        panel_main.add(txt_studentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 370, 330, -1));
+        panel_main.add(txt_bookId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 370, 330, -1));
 
         date_issueDate.setColorBackground(new java.awt.Color(255, 204, 51));
         date_issueDate.setPlaceholder("Enter Issue Date");
@@ -570,29 +423,13 @@ e.printStackTrace();
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_bookIdActionPerformed
 
-    private void txt_studentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_studentIdActionPerformed
+    private void txt_bookId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bookId1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_studentIdActionPerformed
+    }//GEN-LAST:event_txt_bookId1ActionPerformed
 
     private void rSMaterialButtonRectangle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonRectangle3ActionPerformed
-    if(IssueBook() == true){
-     JOptionPane.showMessageDialog(this,"BOOK ISSUED SUCCESSFULLY");
-     updateBookCount();
-}else
-{
-JOptionPane.showMessageDialog(this,"CANT ISSUE THE BOOK");
-}// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_rSMaterialButtonRectangle3ActionPerformed
-
-    private void txt_bookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookIdFocusLost
-       if(txt_bookId.getText().equals(" ")){
-        getBookDetails();     }   // TODO add your handling code here:
-    }//GEN-LAST:event_txt_bookIdFocusLost
-
-    private void txt_studentIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_studentIdFocusLost
-       if(txt_studentId.getText().equals(" ")){
-        getStudentDetails(); // TODO add your handling code here:
-    }//GEN-LAST:event_txt_studentIdFocusLost
 
     /**
      * @param args the command line arguments
@@ -642,7 +479,11 @@ JOptionPane.showMessageDialog(this,"CANT ISSUE THE BOOK");
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -655,7 +496,6 @@ JOptionPane.showMessageDialog(this,"CANT ISSUE THE BOOK");
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lbl_author;
-    private javax.swing.JLabel lbl_bookError;
     private javax.swing.JLabel lbl_bookId;
     private javax.swing.JLabel lbl_bookName;
     private javax.swing.JLabel lbl_branch;
@@ -663,14 +503,9 @@ JOptionPane.showMessageDialog(this,"CANT ISSUE THE BOOK");
     private javax.swing.JLabel lbl_quantity;
     private javax.swing.JLabel lbl_studentId;
     private javax.swing.JLabel lbl_studentName;
-    private javax.swing.JLabel lbl_studenterror;
     private javax.swing.JPanel panel_main;
     private rojerusan.RSMaterialButtonRectangle rSMaterialButtonRectangle3;
-    private javax.swing.JLabel txt_author;
     private app.bolivia.swing.JCTextField txt_bookId;
-    private javax.swing.JLabel txt_bookName;
-    private javax.swing.JLabel txt_bookid;
-    private javax.swing.JLabel txt_quantity;
-    private app.bolivia.swing.JCTextField txt_studentId;
+    private app.bolivia.swing.JCTextField txt_bookId1;
     // End of variables declaration//GEN-END:variables
 }
