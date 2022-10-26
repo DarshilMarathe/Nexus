@@ -5,6 +5,13 @@
 package jframe;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 
 /*import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,11 +31,111 @@ public class Homepage extends javax.swing.JFrame {
      */
     Color mouseEnterColor = new Color(0,0,0);
     Color mouseExitColor = new Color(51,51,51);
+    DefaultTableModel model;
     
     public Homepage() {
         initComponents();
         //showPieChart();
+        setStudentDetailsToTable();
+        setBookDetailsToTable();
+        setDataToCards();
     }
+    
+        //fetches data from database
+    public void setStudentDetailsToTable(){
+    
+        try{
+        
+//               Connection con = DBConnection.getConnection();
+
+            Class.forName("com.mysql.jdbc.Driver");
+             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:8111/library_ms","root","");
+             
+             
+                Statement st = con.createStatement();
+                // 2:26 pe dekh!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                ResultSet rs = st.executeQuery("select * from student_details");
+                
+                
+                while(rs.next())
+                {
+                    String studentId = rs.getString("student_id");
+                    String studentName = rs.getString("name");
+                    String course = rs.getString("course");
+                    String branch = rs.getString("branch");
+                    
+                    Object[] obj = {studentId , studentName , course , branch};
+                    
+                    model = (DefaultTableModel)tbl_studentDetails.getModel();
+                    model.addRow(obj);
+                }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void setBookDetailsToTable() {
+
+        try {
+
+//               Connection con = DBConnection.getConnection();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:8111/library_ms", "root", "");
+
+            Statement st = con.createStatement();
+            // 2:26 pe dekh!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ResultSet rs = st.executeQuery("select * from book_details");
+
+            while (rs.next()) {
+                String bookId = rs.getString("books_id");
+                String bookName = rs.getString("book_name");
+                String author = rs.getString("author");
+                int quantity = rs.getInt("quantity");
+
+                Object[] obj = {bookId, bookName, author, quantity};
+
+                model = (DefaultTableModel) tbl_bookDetails.getModel();
+                model.addRow(obj);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    public void setDataToCards(){
+        Statement st =null;
+        ResultSet rs  = null;
+        
+        
+        long l =System.currentTimeMillis();
+        Date todaysDate = new Date(l);
+        try{
+            Connection con = DBConnection.getConnection();
+            st = con.createStatement();
+            rs =  st.executeQuery("select * from book_details");
+            rs.last();
+           lbl_noOfBookss.setText(Integer.toString(rs.getRow()));
+           
+           rs =  st.executeQuery("select * from student_details");
+            rs.last();
+            lbl_noOfStudents.setText(Integer.toString(rs.getRow()));
+            
+            rs =  st.executeQuery("select * from issue_book_details where status = '"+"pending"+"' ");
+            rs.last();
+            lbl_issuedBooks.setText(Integer.toString(rs.getRow()));
+            
+            rs =  st.executeQuery("select * from issue_book_details where due_date < '"+todaysDate+"' and status = '"+"pending"+"'  ");
+            rs.last();
+            lbl_defaulterList.setText(Integer.toString(rs.getRow()));
+        }
+        catch(Exception e){e.printStackTrace();}
+    }
+
+    
     
 
     /**
@@ -50,23 +157,23 @@ public class Homepage extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel24 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
-        jPanel23 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
+        lbl_noOfBooks = new javax.swing.JPanel();
+        lbl_noOfStudents = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
+        lbl_noOfBookss = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
-        jPanel27 = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
+        lbl_issuedBooks = new javax.swing.JLabel();
+        lbl_returnedBooks = new javax.swing.JPanel();
+        lbl_defaulterList = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        rSTableMetro1 = new rojeru_san.complementos.RSTableMetro();
+        tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel32 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        rSTableMetro2 = new rojeru_san.complementos.RSTableMetro();
+        tbl_studentDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel33 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -173,36 +280,36 @@ public class Homepage extends javax.swing.JFrame {
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
         jPanel22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel23.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(255, 0, 51)));
+        lbl_noOfBooks.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(255, 0, 51)));
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_People_50px.png"))); // NOI18N
-        jLabel28.setText("10");
+        lbl_noOfStudents.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_noOfStudents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_People_50px.png"))); // NOI18N
+        lbl_noOfStudents.setText("10");
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
+        javax.swing.GroupLayout lbl_noOfBooksLayout = new javax.swing.GroupLayout(lbl_noOfBooks);
+        lbl_noOfBooks.setLayout(lbl_noOfBooksLayout);
+        lbl_noOfBooksLayout.setHorizontalGroup(
+            lbl_noOfBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lbl_noOfBooksLayout.createSequentialGroup()
                 .addContainerGap(9, Short.MAX_VALUE)
-                .addComponent(jLabel28)
+                .addComponent(lbl_noOfStudents)
                 .addGap(27, 27, 27))
         );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
+        lbl_noOfBooksLayout.setVerticalGroup(
+            lbl_noOfBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lbl_noOfBooksLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_noOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jPanel22.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 150, 100));
+        jPanel22.add(lbl_noOfBooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 150, 100));
 
         jPanel25.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(255, 0, 51)));
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Book_Shelf_50px.png"))); // NOI18N
-        jLabel29.setText("25");
+        lbl_noOfBookss.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_noOfBookss.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Book_Shelf_50px.png"))); // NOI18N
+        lbl_noOfBookss.setText("25");
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -210,14 +317,14 @@ public class Homepage extends javax.swing.JFrame {
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel29)
+                .addComponent(lbl_noOfBookss)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_noOfBookss, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
@@ -225,9 +332,9 @@ public class Homepage extends javax.swing.JFrame {
 
         jPanel26.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(255, 0, 51)));
 
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Sell_26px.png"))); // NOI18N
-        jLabel30.setText("15");
+        lbl_issuedBooks.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_issuedBooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Sell_26px.png"))); // NOI18N
+        lbl_issuedBooks.setText("15");
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -237,7 +344,7 @@ public class Homepage extends javax.swing.JFrame {
             .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel26Layout.createSequentialGroup()
                     .addGap(0, 30, Short.MAX_VALUE)
-                    .addComponent(jLabel30)
+                    .addComponent(lbl_issuedBooks)
                     .addGap(0, 30, Short.MAX_VALUE)))
         );
         jPanel26Layout.setVerticalGroup(
@@ -246,36 +353,36 @@ public class Homepage extends javax.swing.JFrame {
             .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel26Layout.createSequentialGroup()
                     .addGap(0, 13, Short.MAX_VALUE)
-                    .addComponent(jLabel30)
+                    .addComponent(lbl_issuedBooks)
                     .addGap(0, 14, Short.MAX_VALUE)))
         );
 
         jPanel22.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 150, 100));
 
-        jPanel27.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(255, 0, 51)));
+        lbl_returnedBooks.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(255, 0, 51)));
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Book_26px.png"))); // NOI18N
-        jLabel31.setText("7");
+        lbl_defaulterList.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        lbl_defaulterList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Book_26px.png"))); // NOI18N
+        lbl_defaulterList.setText("7");
 
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel27Layout.createSequentialGroup()
+        javax.swing.GroupLayout lbl_returnedBooksLayout = new javax.swing.GroupLayout(lbl_returnedBooks);
+        lbl_returnedBooks.setLayout(lbl_returnedBooksLayout);
+        lbl_returnedBooksLayout.setHorizontalGroup(
+            lbl_returnedBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lbl_returnedBooksLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_defaulterList, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel27Layout.createSequentialGroup()
+        lbl_returnedBooksLayout.setVerticalGroup(
+            lbl_returnedBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lbl_returnedBooksLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel31)
+                .addComponent(lbl_defaulterList)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel22.add(jPanel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 150, 100));
+        jPanel22.add(lbl_returnedBooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 150, 100));
 
         jLabel24.setText("STUDENT DETAILS");
         jPanel22.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 130, -1));
@@ -286,61 +393,33 @@ public class Homepage extends javax.swing.JFrame {
         jLabel26.setText("ISSUED BOOKS");
         jPanel22.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
 
-        jLabel27.setText("RETURNED BOOKS");
-        jPanel22.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
+        jLabel27.setText("Defaulters List");
+        jPanel22.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 130, -1));
 
-        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Book_Id", "Name", "Authore", "No of books"
             }
         ));
-        jScrollPane3.setViewportView(rSTableMetro1);
+        jScrollPane3.setViewportView(tbl_bookDetails);
 
         jPanel22.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 460, 300));
 
         jLabel32.setText("BOOK DETAILS");
         jPanel22.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, 30));
 
-        rSTableMetro2.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_studentDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Student_Id", "Name", "Class", "Year"
             }
         ));
-        jScrollPane4.setViewportView(rSTableMetro2);
+        jScrollPane4.setViewportView(tbl_studentDetails);
 
         jPanel22.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 440, 300));
 
@@ -690,11 +769,7 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
@@ -716,11 +791,9 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -730,7 +803,13 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private rojeru_san.complementos.RSTableMetro rSTableMetro1;
-    private rojeru_san.complementos.RSTableMetro rSTableMetro2;
+    private javax.swing.JLabel lbl_defaulterList;
+    private javax.swing.JLabel lbl_issuedBooks;
+    private javax.swing.JPanel lbl_noOfBooks;
+    private javax.swing.JLabel lbl_noOfBookss;
+    private javax.swing.JLabel lbl_noOfStudents;
+    private javax.swing.JPanel lbl_returnedBooks;
+    private rojeru_san.complementos.RSTableMetro tbl_bookDetails;
+    private rojeru_san.complementos.RSTableMetro tbl_studentDetails;
     // End of variables declaration//GEN-END:variables
 }
