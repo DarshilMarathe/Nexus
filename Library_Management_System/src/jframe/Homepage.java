@@ -364,6 +364,11 @@ public class Homepage extends javax.swing.JFrame {
         lbl_defaulterList.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         lbl_defaulterList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Book_26px.png"))); // NOI18N
         lbl_defaulterList.setText("7");
+        lbl_defaulterList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_defaulterListMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout lbl_returnedBooksLayout = new javax.swing.GroupLayout(lbl_returnedBooks);
         lbl_returnedBooks.setLayout(lbl_returnedBooksLayout);
@@ -728,6 +733,10 @@ public class Homepage extends javax.swing.JFrame {
         page.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void lbl_defaulterListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_defaulterListMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbl_defaulterListMouseClicked
 
     /**
      * @param args the command line arguments
